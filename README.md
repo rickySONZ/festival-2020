@@ -48,6 +48,8 @@ Query Name: app
 }
 ```
 
+## Stage
+
 ## Search Stages, Get List of All Stages
 
 Query Name: stages
