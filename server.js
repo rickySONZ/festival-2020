@@ -101,20 +101,27 @@ const EventType = new GraphQLObjectType({
         description: { type: GraphQLNonNull(GraphQLString)},
         image: { type: GraphQLNonNull(GraphQLString)},
         startsAt: { type: GraphQLNonNull(GraphQLInt)},
-        endsAt: { type: GraphQLNonNull(GraphQLInt)}
+        endsAt: { type: GraphQLNonNull(GraphQLInt)},
+        // Allows to search for the stage an event belongs to
+        stage: {
+            type: StageType,
+            resolve: (arg) => {return stages.find(stage => stage.id === arg.stageId)}
+        }
     })
 })
-    
+    // Definition of an App object
 const AppType = new GraphQLObjectType({
     name: 'App',
     description: 'List of all apps',
     fields: () => ({
         id: {type: GraphQLNonNull(GraphQLString)},
         name: { type: GraphQLNonNull(GraphQLString)},
+        // Allows for access to stages nested in this app
         stages: {
             type: GraphQLList(StageType),
             resolve: (apps) => {return stages.filter(stage => stage.appId === apps.id)}
         },
+        // Allows for access to events nested in this app
         events : {
             type: GraphQLList(EventType),
             resolve: (apps) => {return events.filter(event => apps.id === event.appId)}
