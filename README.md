@@ -3,6 +3,7 @@ Welcome to HipHop Fest 2020. This GraphQL API leverages local variables to demon
 
 ## Usage
 
+To ensure all packages are correct run ```npm i```
 To run (in development mode) use ```npm run dev```
 Naviage to http://localhost:5000/graphql
 GraphIQL is enabled to create any queries and mutations needed
