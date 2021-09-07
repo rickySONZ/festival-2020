@@ -198,9 +198,20 @@ mutation {
 
 ##### Mutation: deleteStage
 
+``` 
 mutation {
     deleteStage(id: id of stage to delete){
         id
         name
     }
-}
+} 
+```
+
+## Events
+### Add Event
+
+
+### Update Event
+
+
+### Delete Event
