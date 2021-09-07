@@ -140,16 +140,40 @@ const RootQueryType = new GraphQLObjectType({
     description: 'Root Query',
     fields: () => ({
 
-        //Query by single id / name are the first three query resolvers
-        
+
+        // Query Event by ID
         event: {
-            type: AppType,
-            description: "Single App",
+
+            type: EventType,
+            description: "Single Event",
+            args: {
+                id: {type: GraphQLString}
+            },
+            resolve: (parent, args) => 
+            events.find(event => event.id === args.id)
+        },
+        // Query event by name
+        eventName: {
+            type: EventType,
+            description: "Single Event by Name",
             args: {
                 name: {type: GraphQLString}
             },
-            resolve: (parent, args) => events.find(event => event.name === args.name)
+            resolve: (parent, args) => 
+            events.find(event => event.name === args.name)
         },
+        // Query event by name
+        eventDates: {
+            type: GraphQLList(EventType),
+            description: "Filter events by start and end date",
+            args: {
+                startsAt: {type: GraphQLInt},
+                endsAt: {type: GraphQLInt}
+            },
+            resolve: (parent, args) => 
+            events.filter(event => event.startsAt >= args.startsAt && event.endsAt <= args.endsAt)
+        },
+        // Query App by ID
         app: {
             type: AppType,
             description: "Single App",
@@ -158,7 +182,17 @@ const RootQueryType = new GraphQLObjectType({
             },
             resolve: (parent, args) => apps.find(app => app.id === args.id)
         },
+        // Query Stage by ID
         stage : {
+            type: StageType,
+            description: "Single Stage",
+            args: {
+                id: {type: GraphQLString}
+            },
+            resolve: (parent, args) => stages.find(stage => stage.id === args.id)
+        },
+        // Query Stage by Name
+        stageName : {
             type: StageType,
             description: "Single Stage",
             args: {
@@ -166,16 +200,19 @@ const RootQueryType = new GraphQLObjectType({
             },
             resolve: (parent, args) => stages.find(stage => stage.name === args.name)
         },
+        // Query all Apps
         apps: {
             type: new GraphQLList(AppType),
             description: "List of all apps",
             resolve: () => apps
         },
+        // Query all Stages
         stages: {
             type: new GraphQLList(StageType),
             description: 'List of stages',
             resolve: () => stages
         },
+        // Query all events
         events: {
             type: new GraphQLList(EventType),
             description: 'List of events',
@@ -249,7 +286,6 @@ const RootMutationType = new GraphQLObjectType({
             },
             resolve: (parent, args) => {
                 let updateId = apps.findIndex(app => app.id === args.id)
-                debugger
                 if(updateId){
                     if(args.name) apps[updateId].name = args.name
                 }
