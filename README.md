@@ -5,7 +5,8 @@ Welcome to HipHop Fest 2020. This GraphQL API leverages local variables to demon
 
 To run (in development mode) use ```npm run dev```
 Naviage to http://localhost:5000/graphql
-GraphIQL is enabled
+GraphIQL is enabled to create any queries and mutations needed
+Below are available queries and mutations supported by this API.
 
 ## Queries Available
 Listed below are the syntax for the appropriate GraphQL queries.
@@ -169,7 +170,7 @@ mutation {
 ```
 
 ### Update App 
-Did not allow for updating of IDs
+Does not support change of ID intentionally
 
 ##### Mutation: updateApp
 
@@ -183,7 +184,7 @@ mutation {
 ```
 
 ### Delete App
-
+Will return the deleted app
 ##### Mutation: deleteApp
 
 ```
@@ -210,7 +211,7 @@ mutation {
 ```
 
 ### Update Stage
-Did not allow for updating of IDs
+Does not support change of ID intentionally
 
 ##### Mutation: updateStage
 
@@ -224,7 +225,7 @@ mutation {
 ```
 
 ### Delete Stage 
-
+Will return the deleted stage
 ##### Mutation: deleteStage
 
 ``` 
@@ -239,8 +240,41 @@ mutation {
 ## Events
 ### Add Event
 
+##### Mutation: addEvent
+
+```
+mutation {
+    addEvent(id: id, name: name, description: description, appId: appId, stageId: stageId, image: image, startsAt: startsAt, endsAt: endsAt){
+        id
+        name
+    }
+}
+```
 
 ### Update Event
+Does not support change of ID intentionally
 
+##### Mutation: updateEvent
+
+```
+mutation {
+    updateEvent(id: id of Event to edit, name: name, description: description, appId: appId, stageId: stageId, image: image, startsAt: startsAt, endsAt: endsAt){
+        id
+        name
+    }
+}
+```
 
 ### Delete Event
+Will return the deleted event
+
+##### Mutation: deleteEvent
+
+``` 
+mutation {
+    deleteEvent(id: id of event to delete){
+        id
+        name
+    }
+} 
+```
