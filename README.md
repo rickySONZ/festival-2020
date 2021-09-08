@@ -3,9 +3,9 @@ Welcome to HipHop Fest 2020. This GraphQL API leverages local variables to demon
 
 ## Usage
 
-To ensure all packages are correct run ```npm i```
+To ensure all packages are correct run ```npm install```
 To run (in development mode) use ```npm run dev```
-Naviage to http://localhost:5000/graphql
+Navigate to http://localhost:5000/graphql
 GraphIQL is enabled to create any queries and mutations needed
 Below are available queries and mutations supported by this API.
 
@@ -142,7 +142,7 @@ Query Name: eventName
 }
 ```
 
-### Search Events between two dates
+### Search Events Between Two Dates
 
 Query Name: eventDates
 
