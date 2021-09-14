@@ -1,6 +1,9 @@
 const express = require('express')
 const expressGraphQL = require('express-graphql')
 const { graphqlHTTP } = require('express-graphql')
+const cors = require('cors')
+
+
 
 const {
     GraphQLSchema,
@@ -14,6 +17,8 @@ const {
 } = require('graphql')
 
 const app = express()
+
+app.use(cors())
 
 const apps = [
     {
@@ -399,5 +404,7 @@ app.use('/graphql', graphqlHTTP({
     graphiql: true,
     mutation: schema
 }))
+
+
 
 app.listen(5000., () => console.log("The Server is Online"))
